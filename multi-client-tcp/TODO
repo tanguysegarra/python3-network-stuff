@@ -1,0 +1,4 @@
+* handle errors and exits (ctrl + C) with try/catch
+* add howtotest.md
+* try to use IP converted from string
+    -> gethostname is not a good solution if distributed client, only good for testing
