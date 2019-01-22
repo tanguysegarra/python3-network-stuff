@@ -1,22 +1,27 @@
 #!/usr/bin/python3
 import socket                                         
 
-servSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+def startServer():
 
-host = socket.gethostname()
-port = 9999
-servSock.bind((host, port))
+    servSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-servSock.listen(5)
+    host = socket.gethostname()
+    port = 9999
+    servSock.bind((host, port))
 
-while 42:
-    cltSock, addr = servSock.accept()
-    print("Got a connection from %s" % str(addr))
+    servSock.listen(5)
 
-    msg = cltSock.recv(1024).decode('ascii')
-    print("Received: " + msg)
+    while 42:
+        cltSock, addr = servSock.accept()
+        print("Got a connection from %s" % str(addr))
 
-    echo = "Thank you for connecting!" + "\n"
-    cltSock.send(echo.encode('ascii'))
+        msg = cltSock.recv(1024).decode('ascii')
+        print("Received: " + msg)
 
-    cltSock.close()
+        echo = "Thank you for connecting!" + "\n"
+        cltSock.send(echo.encode('ascii'))
+
+        cltSock.close()
+
+if __name__ == "__main__":
+    startServer()
