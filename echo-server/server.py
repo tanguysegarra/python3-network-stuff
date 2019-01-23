@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# echo-server: server.py
+
 import socket
 import sys
 
@@ -12,25 +14,29 @@ def startServer():
     servSock.bind((host, port))
 
     servSock.listen(5)
-    print("Waiting for a connection...")
 
     while 42:
+        print("Waiting for a connection...")
         cltSock, addr = servSock.accept()
         print("Got a connection from %s" % str(addr))
-
-        msg = cltSock.recv(1024).decode('ascii')
+        while 42: 
+            msg = cltSock.recv(1024).decode('ascii')
         
-        if msg == "/killserv":
-            print("Shutting down server...")
-            cltSock.send("Server killed".encode('ascii'))
-            sys.exit(0)
-        
-        print("Received: " + msg)            
+            if msg == "/killserv":
+                print("Shutting down server...")
+                cltSock.send("Server killed".encode('ascii'))
+                servSock.close()
+                sys.exit(0)
 
-        echo = "Thank you for connecting!" + "\n"
-        cltSock.send(echo.encode('ascii'))
-
-        cltSock.close()
+            if msg == "/leave":
+                print(str(addr) + "disconnected.")
+                cltSock.close()
+                break
+    
+            else:
+                print("Received: " + msg)            
+                echo = "Thank you for your mesage!" + "\n"
+                cltSock.send(echo.encode('ascii'))
 
 if __name__ == "__main__":
     startServer()
