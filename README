@@ -37,6 +37,9 @@ CONS : once you know them all, quite pointless (but still funny lmao).
 
 # TODO
 
-* re-use echo-server as base for multi-client tcp
 * handle errors with try catch
+* add flood to re-send message to all clients except sender
+* configure user name when connecting
+* pretty print conversation
+* encryption
 
