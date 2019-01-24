@@ -2,24 +2,23 @@
 
 Pieces of code I wrote in order to understand low-level networking in Python3.
 The goal was to go from a very basic echo-server to a text-based game supporting multi-clients.
----
+
 ## Echo Server (support single-client only)
 
 Once in python3-network-stuff/echo-server, do:
 
-in a first terminal: ```./server.py```
+In a first terminal: ```./server.py```
 
-in an another terminal: ```./client.py```
+In an another terminal: ```./client.py```
 
 Then input a message to send from client,
 Acknowledge server has received it properly,
 And receive server response on client.
 
 You can then start a new client without closing the server and connect the same way.
----
+
 ## Multi-Client TCP
 
----
 ## Protocols Game
 
 Protocols Game based on silly game we played last time at the bar.
